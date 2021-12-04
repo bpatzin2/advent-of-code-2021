@@ -28,7 +28,7 @@ def inverse(binary_str):
 
 
 file = open('day3-input.txt', 'r')
-binary_strs = file.readlines()
+binary_strs = file.read().splitlines()
 num_len = len(binary_strs[0])
 gamma = ""
 for i in range(0, num_len):
