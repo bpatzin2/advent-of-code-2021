@@ -56,32 +56,37 @@ def get_basin(basin_seed, basin_points, grid):
             to_visit.append(neighbour)
     return visited
 
+
+def get_basin_points(grid):
+    basin_points = []
+    row_len = len(grid[0])
+    col_len = len(grid)
+    for x in range(0, row_len):
+        for y in range(0, col_len):
+            if get_height((x, y), grid) < 9:
+                basin_points.append((x, y))
+    return basin_points
+
+
+def get_basins(grid):
+    basin_points = get_basin_points(grid)
+    basins = []
+    while len(basin_points) > 0:
+        basin_seed = basin_points[0]
+        basin = get_basin(basin_seed, basin_points, grid)
+        basins.append(basin)
+        basin_points = remove_all(basin_points, basin)
+    return basins
+
+
 file = open('day9-input.txt', 'r')
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))
-row_len = len(grid[0])
-col_len = len(grid)
 
-basin_points = []
+basins = get_basins(grid)
 
-for x in range(0, row_len):
-    for y in range(0, col_len):
-        if get_height((x, y), grid) < 9:
-            basin_points.append((x, y))
-
-print(basin_points)
-
-basins = []
-while len(basin_points) > 0:
-    basin_seed = basin_points[0]
-    basin = get_basin(basin_seed, basin_points, grid)
-    basins.append(basin)
-    basin_points = remove_all(basin_points, basin)
-
-print(basins)
 basins.sort(reverse=True, key=len)
 top3 = basins[0:3]
 sizes = list(map(len, top3))
-print(sizes)
 print(reduce(lambda x, y: x * y, sizes))
