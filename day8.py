@@ -13,18 +13,6 @@ bdfegc cbegaf gecbf dfcage bdacg ed bedf ced adcbefg gebcd | ed bcgafe cdgba cbg
 egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce""".strip()
 
-
-# display_config = {
-#     0: ['a', 'b', 'c', 'e', 'f', 'g'],
-#     1: ['c', 'f'],
-#     2: ['a', 'c', 'd', 'e', 'g'],
-#     3: ['a', 'c', 'd', 'f', 'g'],
-#     4: ['b', 'c', 'd', 'f'],
-#
-#     7: ['a', 'c', 'f'],
-#     8: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-# }
-
 display_config = {
     1: 2,
     4: 4,
