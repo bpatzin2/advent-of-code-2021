@@ -37,6 +37,9 @@ def grow_grid_5(grid):
     return result
 
 
+def val(coord, grid):
+    return grid[coord[1]][coord[0]]
+
 
 def get_adj_coords(coord, grid):
     result = []
@@ -65,27 +68,53 @@ def bottom_right_vert_num(grid):
     return vert_num((row_len - 1, col_len - 1), grid)
 
 
-def to_matrix(grid):
-    row_len = len(grid[0])
-    col_len = len(grid)
-    n = row_len * col_len
-    # https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_matrix.html
-    row = []
-    col = []
-    risk = []
-    for y in range(col_len):
-        for x in range(row_len):
-            this_vert_num = vert_num((x, y), grid)
-            adjs = get_adj_coords((x, y), grid)
-            for a in adjs:
-                a_num = vert_num(a, grid)
-                row.append(a_num)
-                col.append(this_vert_num)
-                risk.append(grid[y][x])
-    row_a = np.array(row)
-    col_a = np.array(col)
-    data_a = np.array(risk)
-    return csr_matrix((data_a, (row_a, col_a)), shape=(n, n))
+# https://benalexkeen.com/implementing-djikstras-shortest-path-algorithm-with-python/
+def dijsktra(grid, initial, end):
+    # shortest paths is a dict of nodes
+    # whose value is a tuple of (previous node, weight)
+    shortest_paths = {initial: (None, 0)}
+    shortest_path_keys = {initial}
+    current_node = initial
+    visited = set()
+
+    while current_node != end:
+        visited.add(current_node)
+        destinations = get_adj_coords(current_node, grid)
+        weight_to_current_node = shortest_paths[current_node][1]
+
+        for next_node in destinations:
+            weight = val(next_node, grid) + weight_to_current_node
+            if next_node not in shortest_paths:
+                shortest_paths[next_node] = (current_node, weight)
+                shortest_path_keys.add(next_node)
+            else:
+                current_shortest_weight = shortest_paths[next_node][1]
+                if current_shortest_weight > weight:
+                    shortest_paths[next_node] = (current_node, weight)
+                    shortest_path_keys.add(next_node)
+
+        # next_destinations = {node: shortest_paths[node] for node in shortest_paths if node not in visited}
+        next_destinations = {}
+        next_destination_keys = shortest_path_keys.difference(visited)
+        for node in next_destination_keys:
+            next_destinations[node] = shortest_paths[node]
+
+        if not next_destinations:
+            return "Route Not Possible"
+        # next node is the destination with the lowest weight
+        current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
+
+    # Work back through destinations in shortest path
+    path = []
+    distance = 0
+    while current_node is not None:
+        path.append(current_node)
+        next_node = shortest_paths[current_node][0]
+        distance += val(current_node, grid)
+        current_node = next_node
+    # Reverse path
+    path = path[::-1]
+    return path, (distance-val(path[0], grid))
 
 
 file = open('day15-input.txt', 'r')
@@ -93,6 +122,10 @@ lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))
 big_grid = grow_grid_5(grid)
-matrix = to_matrix(big_grid)
-dist_matrix = shortest_path(csgraph=matrix, directed=True, method='BF')
-print(dist_matrix[0][bottom_right_vert_num(big_grid)])
+row_len = len(big_grid[0])
+col_len = len(big_grid)
+bottom_right_coord = (row_len - 1, col_len - 1)
+
+path, distance = dijsktra(big_grid, (0, 0), bottom_right_coord)
+print(path)
+print(distance)
