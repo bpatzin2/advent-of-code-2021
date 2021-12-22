@@ -1,7 +1,3 @@
-import numpy as np
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import shortest_path
-
 test_data = """
 1163751742
 1381373672
