@@ -74,14 +74,16 @@ def decode(packet_str):
     type_b = packet_str[3:6]
     if type_b == "100":
         literal_int, remaining_packet = decode_literal(packet_str[6:])
-        return {"type": type_b,
+        return {"type_b": type_b,
+                "type": int(type_b, 2),
                 "version": int(version_b, 2),
                 "literal": literal_int,
                 "children": [],
                 "remaining_packet": remaining_packet}
     else:
         children, remaining_packet = decode_operator(packet_str[6:])
-        return {"type": type_b,
+        return {"type_b": type_b,
+                "type": int(type_b, 2),
                 "version": int(version_b, 2),
                 "literal": None,
                 "children": children,
@@ -89,11 +91,40 @@ def decode(packet_str):
 
 
 
-def sum_versions(packet_tree):
-    result = packet_tree["version"]
-    for child in packet_tree["children"]:
-        child_sum = sum_versions(child)
-        result += child_sum
+def eval_packet_tree(packet_tree):
+    if packet_tree["literal"] is not None:
+        return packet_tree["literal"]
+
+    children = packet_tree["children"]
+    type = packet_tree["type"]
+    result = 0
+
+    if type == 0:
+        for child in children:
+            r = eval_packet_tree(child)
+            result += r
+    elif type == 1:
+        result = 1
+        for child in children:
+            result *= eval_packet_tree(child)
+    elif type == 2:
+        result = min(list(map(eval_packet_tree, children)))
+    elif type == 3:
+        result = max(list(map(eval_packet_tree, children)))
+    elif type == 5:
+        child1 = children[0]
+        child2 = children[1]
+        result = 1 if eval_packet_tree(child1) > eval_packet_tree(child2) else 0
+    elif type == 6:
+        child1 = children[0]
+        child2 = children[1]
+        result = 1 if eval_packet_tree(child1) < eval_packet_tree(child2) else 0
+    elif type == 7:
+        child1 = children[0]
+        child2 = children[1]
+        result = 1 if eval_packet_tree(child1) == eval_packet_tree(child2) else 0
+    else:
+        raise Exception('unknown type', type)
     return result
 
 file = open('day16-input.txt', 'r')
@@ -110,5 +141,5 @@ operator_binary = parse_input(lines)
 packet_tree = decode(operator_binary)
 print(packet_tree)
 
-r = sum_versions(packet_tree)
+r = eval_packet_tree(packet_tree)
 print(r)
