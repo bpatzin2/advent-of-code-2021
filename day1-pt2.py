@@ -1,7 +1,7 @@
 from more_itertools import windowed
 file = open('day1-input.txt', 'r')
 depthsStrs = file.readlines()
-depths = map(int, depthsStrs)
+depths = [int(x) for x in depthsStrs]
 
 windows = list(windowed(depths, n=3))
 windowDepths = map(sum, windows)
