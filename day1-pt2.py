@@ -1,10 +1,16 @@
 from more_itertools import windowed
+from typing import Dict, List, Tuple
+
+
 file = open('day1-input.txt', 'r')
 depthsStrs = file.readlines()
-depths = [int(x) for x in depthsStrs]
+depths = [int(depthStr) for depthStr in depthsStrs]
 
-windows = list(windowed(depths, n=3))
-windowDepths = map(sum, windows)
+def window_depth_sums(depths: List[int]):
+    windows = windowed(depths, n=3)
+    return [sum(window) for window in windows]
+
+windowDepths = window_depth_sums(depths)
 
 result = 0
 prev = None
@@ -14,3 +20,4 @@ for depth in windowDepths:
     prev = depth
 
 print(result)
+print("should be 1571")
