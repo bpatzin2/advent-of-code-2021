@@ -20,9 +20,10 @@ def depths_from_file():
     return [int(depthStr) for depthStr in depthStrs]
 
 
-depths = depths_from_file()
-windowDepths = window_depth_sums(depths)
-result = num_increases(windowDepths)
+def run(): 
+    depths = depths_from_file()
+    windowDepths = window_depth_sums(depths)
+    return num_increases(windowDepths)
 
-print(result)
-print("should be 1571")
+if __name__ == "__main__":
+    print(run())
