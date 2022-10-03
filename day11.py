@@ -63,8 +63,7 @@ def simulate_day(grid):
     return flashed
 
 
-
-file = open('day11-input.txt', 'r')
+file = open("day11-input.txt", "r")
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))
@@ -75,5 +74,3 @@ for i in range(0, 100):
     flashed_count += len(flashed)
 
 print(flashed_count)
-
-

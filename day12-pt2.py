@@ -63,7 +63,7 @@ def dfs(graph, node, path=[]):
     return results
 
 
-file = open('day12-input.txt', 'r')
+file = open("day12-input.txt", "r")
 lines = file.read().splitlines()
 connections = parse_input(lines)
 # connections = parse_input(test_data.split("\n"))
@@ -71,6 +71,3 @@ connections = parse_input(lines)
 graph = to_graph(connections)
 paths = dfs(graph, "start")
 print(len(paths))
-
-
-

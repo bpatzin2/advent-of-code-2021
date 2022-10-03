@@ -74,19 +74,22 @@ def decode(packet_str):
     type_b = packet_str[3:6]
     if type_b == "100":
         literal_int, remaining_packet = decode_literal(packet_str[6:])
-        return {"type": type_b,
-                "version": int(version_b, 2),
-                "literal": literal_int,
-                "children": [],
-                "remaining_packet": remaining_packet}
+        return {
+            "type": type_b,
+            "version": int(version_b, 2),
+            "literal": literal_int,
+            "children": [],
+            "remaining_packet": remaining_packet,
+        }
     else:
         children, remaining_packet = decode_operator(packet_str[6:])
-        return {"type": type_b,
-                "version": int(version_b, 2),
-                "literal": None,
-                "children": children,
-                "remaining_packet": remaining_packet}
-
+        return {
+            "type": type_b,
+            "version": int(version_b, 2),
+            "literal": None,
+            "children": children,
+            "remaining_packet": remaining_packet,
+        }
 
 
 def sum_versions(packet_tree):
@@ -96,7 +99,8 @@ def sum_versions(packet_tree):
         result += child_sum
     return result
 
-file = open('day16-input.txt', 'r')
+
+file = open("day16-input.txt", "r")
 lines = file.read().splitlines()
 operator_binary = parse_input(lines)
 # literal_binary = parse_input(literal_test_data.split("\n"))

@@ -13,20 +13,20 @@ test_data = """
 <{([{{}}[<[[[<>{}]]]>[]]""".strip()
 
 scoring = {
-    ')': 3,
-    ']': 57,
-    '}': 1197,
-    '>': 25137,
+    ")": 3,
+    "]": 57,
+    "}": 1197,
+    ">": 25137,
 }
 
 pairs = {
-    '(': ')',
-    '[': ']',
-    '{': '}',
-    '<': '>',
+    "(": ")",
+    "[": "]",
+    "{": "}",
+    "<": ">",
 }
 
-file = open('day10-input.txt', 'r')
+file = open("day10-input.txt", "r")
 lines = file.read().splitlines()
 # lines = test_data.split("\n")
 

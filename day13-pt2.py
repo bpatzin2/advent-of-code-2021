@@ -99,7 +99,8 @@ def print_paper(points):
         print(row)
     return
 
-file = open('day13-input.txt', 'r')
+
+file = open("day13-input.txt", "r")
 lines = file.read().splitlines()
 points, instructions = parse_input(lines)
 # points, instructions = parse_input(test_data.split("\n"))
@@ -116,5 +117,3 @@ for instruction in instructions:
         new_points = fold_up(new_points, instruction[1])
 
 print_paper(new_points)
-
-

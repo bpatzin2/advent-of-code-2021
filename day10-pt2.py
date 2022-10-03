@@ -13,17 +13,17 @@ test_data = """
 <{([{{}}[<[[[<>{}]]]>[]]""".strip()
 
 scoring = {
-    ')': 1,
-    ']': 2,
-    '}': 3,
-    '>': 4,
+    ")": 1,
+    "]": 2,
+    "}": 3,
+    ">": 4,
 }
 
 pairs = {
-    '(': ')',
-    '[': ']',
-    '{': '}',
-    '<': '>',
+    "(": ")",
+    "[": "]",
+    "{": "}",
+    "<": ">",
 }
 
 
@@ -35,7 +35,7 @@ def score(segment):
     return score
 
 
-file = open('day10-input.txt', 'r')
+file = open("day10-input.txt", "r")
 lines = file.read().splitlines()
 # lines = test_data.split("\n")
 # print(len(lines))

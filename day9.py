@@ -41,7 +41,7 @@ def risk_level(coord, grid):
     return 1 + get_height(coord, grid)
 
 
-file = open('day9-input.txt', 'r')
+file = open("day9-input.txt", "r")
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))

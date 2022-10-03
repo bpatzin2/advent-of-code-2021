@@ -29,7 +29,7 @@ def apply_command(current_state, command):
     return current_state
 
 
-file = open('day2-input.txt', 'r')
+file = open("day2-input.txt", "r")
 commandStrs = file.readlines()
 commands = map(to_command, commandStrs)
 
@@ -37,4 +37,3 @@ final_state = functools.reduce(apply_command, commands, INITIAL_STATE)
 
 print(final_state)
 print(final_state[HORIZ_STATE] * final_state[DEPTH_STATE])
-

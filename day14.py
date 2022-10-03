@@ -32,11 +32,12 @@ def parse_input(lines):
 
     return template, rules
 
+
 def run_step(template, rules):
     new_template = ""
     for i in range(len(template) - 1):
         first = template[i]
-        second = template[i+1]
+        second = template[i + 1]
         new_template += first
         pair = first + second
         if pair in rules.keys():
@@ -45,8 +46,7 @@ def run_step(template, rules):
     return new_template
 
 
-
-file = open('day14-input.txt', 'r')
+file = open("day14-input.txt", "r")
 lines = file.read().splitlines()
 template, rules = parse_input(lines)
 # template, rules = parse_input(test_data.split("\n"))
@@ -69,5 +69,3 @@ for x in counter.values():
         least = x
 
 print(most - least)
-
-

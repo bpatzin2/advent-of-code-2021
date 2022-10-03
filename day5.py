@@ -1,6 +1,7 @@
 import itertools
 from collections import Counter
 
+
 def parse_point(point_str):
     point_strs = point_str.split(",")
     return int(point_strs[0]), int(point_strs[1])
@@ -18,9 +19,9 @@ def is_horiz_or_vert(segment):
 
 def enumerate(a, b):
     if a > b:
-        return range(b, a+1)
+        return range(b, a + 1)
     else:
-        return range(a, b+1)
+        return range(a, b + 1)
 
 
 def expand_segment(segment):
@@ -38,7 +39,7 @@ def expand_segment(segment):
         return result
 
 
-file = open('day5-input.txt', 'r')
+file = open("day5-input.txt", "r")
 lines = file.read().splitlines()
 print(lines)
 line_segments = list(map(parse_segment, lines))

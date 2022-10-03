@@ -20,6 +20,7 @@ display_config = {
     8: 7,
 }
 
+
 def parse_line(line):
     signal, output = line.split(" | ")
     return signal, output
@@ -28,7 +29,8 @@ def parse_line(line):
 def parse_input(lines):
     return list(map(parse_line, lines))
 
-file = open('day8-input.txt', 'r')
+
+file = open("day8-input.txt", "r")
 lines = file.read().splitlines()
 pairs = parse_input(lines)
 # pairs = parse_input(test_data.split("\n"))

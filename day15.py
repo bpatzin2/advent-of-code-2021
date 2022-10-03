@@ -1,6 +1,6 @@
 import numpy as np
-from scipy.sparse import csr_matrix # type: ignore
-from scipy.sparse.csgraph import shortest_path # type: ignore
+from scipy.sparse import csr_matrix  # type: ignore
+from scipy.sparse.csgraph import shortest_path  # type: ignore
 
 test_data = """
 1163751742
@@ -75,8 +75,7 @@ def to_matrix(grid):
     return csr_matrix((data_a, (row_a, col_a)), shape=(n, n))
 
 
-
-file = open('day15-input.txt', 'r')
+file = open("day15-input.txt", "r")
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))

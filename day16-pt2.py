@@ -74,21 +74,24 @@ def decode(packet_str):
     type_b = packet_str[3:6]
     if type_b == "100":
         literal_int, remaining_packet = decode_literal(packet_str[6:])
-        return {"type_b": type_b,
-                "type": int(type_b, 2),
-                "version": int(version_b, 2),
-                "literal": literal_int,
-                "children": [],
-                "remaining_packet": remaining_packet}
+        return {
+            "type_b": type_b,
+            "type": int(type_b, 2),
+            "version": int(version_b, 2),
+            "literal": literal_int,
+            "children": [],
+            "remaining_packet": remaining_packet,
+        }
     else:
         children, remaining_packet = decode_operator(packet_str[6:])
-        return {"type_b": type_b,
-                "type": int(type_b, 2),
-                "version": int(version_b, 2),
-                "literal": None,
-                "children": children,
-                "remaining_packet": remaining_packet}
-
+        return {
+            "type_b": type_b,
+            "type": int(type_b, 2),
+            "version": int(version_b, 2),
+            "literal": None,
+            "children": children,
+            "remaining_packet": remaining_packet,
+        }
 
 
 def eval_packet_tree(packet_tree):
@@ -124,10 +127,11 @@ def eval_packet_tree(packet_tree):
         child2 = children[1]
         result = 1 if eval_packet_tree(child1) == eval_packet_tree(child2) else 0
     else:
-        raise Exception('unknown type', type)
+        raise Exception("unknown type", type)
     return result
 
-file = open('day16-input.txt', 'r')
+
+file = open("day16-input.txt", "r")
 lines = file.read().splitlines()
 operator_binary = parse_input(lines)
 # literal_binary = parse_input(literal_test_data.split("\n"))

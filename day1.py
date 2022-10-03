@@ -1,5 +1,6 @@
 from typing import List
 
+
 def run():
     result = 0
     prev = None
@@ -10,11 +11,11 @@ def run():
         prev = depth
     return result
 
+
 def depths_from_file() -> List[int]:
-    file = open('day1-input.txt', 'r')
+    file = open("day1-input.txt", "r")
     depthStrs = file.readlines()
     return [int(depthStr) for depthStr in depthStrs]
-
 
 
 if __name__ == "__main__":

@@ -14,9 +14,9 @@ def parse_segment(segment_str):
 
 def enumerate(a, b):
     if a > b:
-        return range(b, a+1)
+        return range(b, a + 1)
     else:
-        return range(a, b+1)
+        return range(a, b + 1)
 
 
 def expand_segment(segment):
@@ -45,7 +45,7 @@ def expand_segment(segment):
         return result
 
 
-file = open('day5-input.txt', 'r')
+file = open("day5-input.txt", "r")
 lines = file.read().splitlines()
 print(lines)
 line_segments = list(map(parse_segment, lines))

@@ -43,15 +43,16 @@ def is_winner(board, numbers):
 
 def first_winner_with_draw_numbers(boards, number_draws):
     for i in range(len(number_draws)):
-        numbers = number_draws[:i+1]
+        numbers = number_draws[: i + 1]
         for board in boards:
             if is_winner(board, numbers):
                 return [board, numbers]
 
     return None
 
+
 def score(board, number_draws):
-    board_numbers = reduce(lambda x, y: x+y, board)
+    board_numbers = reduce(lambda x, y: x + y, board)
     unmarked_numbers = diff(board_numbers, number_draws)
     print("unmarked")
     print(unmarked_numbers)
@@ -62,7 +63,7 @@ def score(board, number_draws):
     return unmarked_sum * last_draw
 
 
-file = open('day4-input.txt', 'r')
+file = open("day4-input.txt", "r")
 lines = file.read().splitlines()
 
 number_draws = list(map(int, lines[0].split(",")))

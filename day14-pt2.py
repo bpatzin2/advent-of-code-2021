@@ -50,12 +50,12 @@ def run_step(pair_counts, rules):
 def count_pairs(template):
     pair_counts = defaultdict(int)
     for i in range(len(template) - 1):
-        pair = template[i:i+2]
+        pair = template[i : i + 2]
         pair_counts[pair] += 1
     return pair_counts
 
 
-file = open('day14-input.txt', 'r')
+file = open("day14-input.txt", "r")
 lines = file.read().splitlines()
 template, rules = parse_input(lines)
 # template, rules = parse_input(test_data.split("\n"))
@@ -80,5 +80,3 @@ for x in letter_counts.values():
     if x < least:
         least = x
 print(most - least)
-
-

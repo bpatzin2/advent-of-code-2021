@@ -33,14 +33,16 @@ def filter_char_at_pos(strs, char, pos):
     return list(filter(lambda str: str[pos] == char, strs))
 
 
-file = open('day3-input.txt', 'r')
+file = open("day3-input.txt", "r")
 binary_strs = file.read().splitlines()
 num_len = len(binary_strs[0])
 
 oxygen_rating_potentials = binary_strs.copy()
 for i in range(0, num_len):
     modal_bit = mode_at_index(i, oxygen_rating_potentials, "1")
-    oxygen_rating_potentials = filter_char_at_pos(oxygen_rating_potentials, modal_bit, i)
+    oxygen_rating_potentials = filter_char_at_pos(
+        oxygen_rating_potentials, modal_bit, i
+    )
     if len(oxygen_rating_potentials) == 1:
         break
 oxygen_rating_str = oxygen_rating_potentials[0]

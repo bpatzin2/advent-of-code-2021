@@ -15,16 +15,16 @@ gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce
 
 
 display_config = {
-    0: ['a', 'b', 'c', 'e', 'f', 'g'],
-    1: ['c', 'f'],
-    2: ['a', 'c', 'd', 'e', 'g'],
-    3: ['a', 'c', 'd', 'f', 'g'],
-    4: ['b', 'c', 'd', 'f'],
-    5: ['a', 'b', 'd', 'f', 'g'],
-    6: ['a', 'b', 'd', 'e', 'f', 'g'],
-    7: ['a', 'c', 'f'],
-    8: ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    9: ['a', 'b', 'c', 'd', 'f', 'g'],
+    0: ["a", "b", "c", "e", "f", "g"],
+    1: ["c", "f"],
+    2: ["a", "c", "d", "e", "g"],
+    3: ["a", "c", "d", "f", "g"],
+    4: ["b", "c", "d", "f"],
+    5: ["a", "b", "d", "f", "g"],
+    6: ["a", "b", "d", "e", "f", "g"],
+    7: ["a", "c", "f"],
+    8: ["a", "b", "c", "d", "e", "f", "g"],
+    9: ["a", "b", "c", "d", "f", "g"],
 }
 
 uniq_lens = {
@@ -35,13 +35,13 @@ uniq_lens = {
 }
 
 all_potential_mapppings = {
-    'a': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'b': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'c': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'd': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'e': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'f': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
-    'g': ['a', 'b', 'c', 'd', 'e', 'f', 'g'],
+    "a": ["a", "b", "c", "d", "e", "f", "g"],
+    "b": ["a", "b", "c", "d", "e", "f", "g"],
+    "c": ["a", "b", "c", "d", "e", "f", "g"],
+    "d": ["a", "b", "c", "d", "e", "f", "g"],
+    "e": ["a", "b", "c", "d", "e", "f", "g"],
+    "f": ["a", "b", "c", "d", "e", "f", "g"],
+    "g": ["a", "b", "c", "d", "e", "f", "g"],
 }
 
 
@@ -78,7 +78,9 @@ def apply_generic_deduction(potential_mappings):
 
     while n < 10:
         reset = False
-        mappings_with_n_potentials = dict(filter(lambda kv: len(kv[1]) == n, updated_mappings.items()))
+        mappings_with_n_potentials = dict(
+            filter(lambda kv: len(kv[1]) == n, updated_mappings.items())
+        )
         if len(mappings_with_n_potentials) >= n:
             new_mappings = updated_mappings.copy()
             vals_to_remove = list(itertools.chain(*mappings_with_n_potentials.values()))
@@ -98,7 +100,9 @@ def apply_generic_deduction(potential_mappings):
 
 def determine_potential_wire_mappings(scrambled_displays):
     potential_mappings = all_potential_mapppings.copy()
-    potential_mappings = apply_uniq_num_segment_rules(potential_mappings, scrambled_displays)
+    potential_mappings = apply_uniq_num_segment_rules(
+        potential_mappings, scrambled_displays
+    )
     potential_mappings = apply_generic_deduction(potential_mappings)
     return potential_mappings
 
@@ -120,11 +124,13 @@ def distinct_combos(iter, mapping):
 
 def solve_line(signal, output):
     potential_mappings = determine_potential_wire_mappings(signal + output)
-    ints = list(map(lambda output_signal: decypher(output_signal, potential_mappings), output))
+    ints = list(
+        map(lambda output_signal: decypher(output_signal, potential_mappings), output)
+    )
     return int("".join(list(map(str, ints))))
 
 
-file = open('day8-input.txt', 'r')
+file = open("day8-input.txt", "r")
 lines = file.read().splitlines()
 pairs = parse_input(lines)
 # pairs = parse_input(test_data.split("\n"))

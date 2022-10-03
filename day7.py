@@ -6,7 +6,7 @@ def parse_input(num_list_str):
     return list(map(int, num_str_list))
 
 
-file = open('day7-input.txt', 'r')
+file = open("day7-input.txt", "r")
 lines = file.read().splitlines()
 positions = parse_input(lines[0])
 # positions = parse_input("16,1,2,0,4,2,7,1,2,14")

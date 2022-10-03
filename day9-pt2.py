@@ -79,7 +79,7 @@ def get_basins(grid):
     return basins
 
 
-file = open('day9-input.txt', 'r')
+file = open("day9-input.txt", "r")
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))

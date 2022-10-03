@@ -110,10 +110,10 @@ def dijsktra(grid, initial, end):
         current_node = next_node
     # Reverse path
     path = path[::-1]
-    return path, (distance-val(path[0], grid))
+    return path, (distance - val(path[0], grid))
 
 
-file = open('day15-input.txt', 'r')
+file = open("day15-input.txt", "r")
 lines = file.read().splitlines()
 grid = parse_input(lines)
 # grid = parse_input(test_data.split("\n"))

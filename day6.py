@@ -10,7 +10,7 @@ def simulate_day(fish_day_counts):
     result = defaultdict(int)
     for day, count in fish_day_counts.items():
         if day > 0:
-            result[day-1] += count
+            result[day - 1] += count
         else:
             result[8] += count
             result[6] += count
@@ -19,7 +19,7 @@ def simulate_day(fish_day_counts):
 
 # fish_day_counts = parse_input("3,4,3,1,2")
 
-file = open('day6-input.txt', 'r')
+file = open("day6-input.txt", "r")
 lines = file.read().splitlines()
 fish_day_counts = parse_input(lines[0])
 
