@@ -30,7 +30,7 @@ file = open('day10-input.txt', 'r')
 lines = file.read().splitlines()
 # lines = test_data.split("\n")
 
-stack = LifoQueue()
+stack: LifoQueue = LifoQueue()
 corrupted = []
 
 for line in lines:

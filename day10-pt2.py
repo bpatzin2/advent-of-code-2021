@@ -42,7 +42,7 @@ lines = file.read().splitlines()
 
 incomplete_stacks = []
 for line in lines:
-    stack = LifoQueue()
+    stack: LifoQueue = LifoQueue()
     corrupt = False
     for c in line:
         if c in pairs.keys():

@@ -1,4 +1,5 @@
 from collections import Counter, defaultdict
+from typing import Dict
 
 test_data = """
 NNCB
@@ -64,7 +65,7 @@ pair_counts = count_pairs(template)
 for n in range(num_steps):
     pair_counts = run_step(pair_counts, rules)
 
-letter_counts = defaultdict(int)
+letter_counts: Dict[int, int] = defaultdict(int)
 for pair, count in pair_counts.items():
     letter = pair[0]
     letter_counts[letter] += count
