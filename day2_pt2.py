@@ -29,11 +29,18 @@ def apply_command(current_state, command):
     return current_state
 
 
-file = open("day2-input.txt", "r")
-commandStrs = file.readlines()
-commands = map(to_command, commandStrs)
+def run():
+    file = open("day2-input.txt", "r")
+    commandStrs = file.readlines()
+    commands = map(to_command, commandStrs)
 
-final_state = functools.reduce(apply_command, commands, INITIAL_STATE)
+    final_state = functools.reduce(apply_command, commands, INITIAL_STATE)
 
-print(final_state)
-print(final_state[HORIZ_STATE] * final_state[DEPTH_STATE])
+    print(final_state)
+    result = final_state[HORIZ_STATE] * final_state[DEPTH_STATE]
+    print(result)
+    return result
+
+
+if __name__ == "__main__":
+    print(run())
