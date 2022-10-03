@@ -1,9 +1,23 @@
 import functools
+from typing import Tuple
 
 INITIAL_STATE = [0, 0, 0]
 HORIZ_STATE = 0
 DEPTH_STATE = 1
 AIM_STATE = 2
+
+
+def run() -> int:
+    file = open("day2-input.txt", "r")
+    commandStrs = file.readlines()
+    commands = map(to_command, commandStrs)
+
+    final_state = functools.reduce(apply_command, commands, INITIAL_STATE)
+
+    print(final_state)
+    result = final_state[HORIZ_STATE] * final_state[DEPTH_STATE]
+    print(result)
+    return result
 
 
 def to_command(command_str):
@@ -27,19 +41,6 @@ def apply_command(current_state, command):
         prev_aim = current_state[AIM_STATE]
         current_state[AIM_STATE] = prev_aim + units
     return current_state
-
-
-def run():
-    file = open("day2-input.txt", "r")
-    commandStrs = file.readlines()
-    commands = map(to_command, commandStrs)
-
-    final_state = functools.reduce(apply_command, commands, INITIAL_STATE)
-
-    print(final_state)
-    result = final_state[HORIZ_STATE] * final_state[DEPTH_STATE]
-    print(result)
-    return result
 
 
 if __name__ == "__main__":

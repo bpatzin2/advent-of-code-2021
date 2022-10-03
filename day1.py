@@ -1,7 +1,7 @@
 from typing import List
 
 
-def run():
+def run() -> int:
     result = 0
     prev = None
     depths = depths_from_file()

@@ -1,13 +1,13 @@
 from more_itertools import windowed
-from typing import Dict, List, Tuple
+from typing import Dict, Iterator, List, Tuple
 
 
-def window_depth_sums(depths: List[int]):
-    windows = windowed(depths, n=3)
+def window_depth_sums(depths: List[int]) -> List[int]:
+    windows: Iterator = windowed(depths, n=3)  # TODO: Add better typing
     return [sum(window) for window in windows]
 
 
-def num_increases(ints: List[int]):
+def num_increases(ints: List[int]) -> int:
     result = 0
     prev = None
     for num in ints:
@@ -17,13 +17,13 @@ def num_increases(ints: List[int]):
     return result
 
 
-def depths_from_file():
+def depths_from_file() -> List[int]:
     file = open("day1-input.txt", "r")
     depthStrs = file.readlines()
     return [int(depthStr) for depthStr in depthStrs]
 
 
-def run():
+def run() -> int:
     depths = depths_from_file()
     windowDepths = window_depth_sums(depths)
     return num_increases(windowDepths)

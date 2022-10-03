@@ -1,0 +1,1 @@
+mypy . && python -m pytest tests/

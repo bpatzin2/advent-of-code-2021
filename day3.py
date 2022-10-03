@@ -1,3 +1,23 @@
+def run():
+    file = open("day3-input.txt", "r")
+    binary_strs = file.read().splitlines()
+    num_len = len(binary_strs[0])
+    gamma = ""
+    for i in range(0, num_len):
+        gamma += mode_at_index(i, binary_strs)
+
+    epsilon = inverse(gamma)
+
+    print(gamma)
+    print(epsilon)
+
+    gamma_int = int(gamma, 2)
+    epsilon_int = int(epsilon, 2)
+
+    result = gamma_int * epsilon_int
+    print(result)
+    return result
+
 def mode(values):
     zero_count = 0
     one_count = 0
@@ -27,19 +47,5 @@ def inverse(binary_str):
     return result
 
 
-file = open("day3-input.txt", "r")
-binary_strs = file.read().splitlines()
-num_len = len(binary_strs[0])
-gamma = ""
-for i in range(0, num_len):
-    gamma += mode_at_index(i, binary_strs)
-
-epsilon = inverse(gamma)
-
-print(gamma)
-print(epsilon)
-
-gamma_int = int(gamma, 2)
-epsilon_int = int(epsilon, 2)
-
-print(gamma_int * epsilon_int)
+if __name__ == "__main__":
+    print(run())

@@ -2,6 +2,8 @@ import day1
 import day1_pt2
 import day2
 import day2_pt2
+import day3
+import day3_pt2
 
 
 def test_all():
@@ -10,3 +12,6 @@ def test_all():
 
     assert day2.run() == 1989014
     assert day2_pt2.run() == 2006917119
+
+    assert day3.run() == 1082324
+    assert day3_pt2.run() == 1353024
