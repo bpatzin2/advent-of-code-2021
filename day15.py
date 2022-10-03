@@ -1,6 +1,6 @@
 import numpy as np
-from scipy.sparse import csr_matrix
-from scipy.sparse.csgraph import shortest_path
+from scipy.sparse import csr_matrix # type: ignore
+from scipy.sparse.csgraph import shortest_path # type: ignore
 
 test_data = """
 1163751742
