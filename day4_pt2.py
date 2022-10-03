@@ -2,6 +2,29 @@ from more_itertools import split_at
 from functools import reduce
 
 
+def run():
+    file = open("day4-input.txt", "r")
+    lines = file.read().splitlines()
+
+    number_draws = list(map(int, lines[0].split(",")))
+    rest = lines[2:]
+    board_strs = list(split_at(rest, lambda a: a == ""))
+    boards = list(map(to_board, board_strs))
+
+    print("numbers")
+    print(number_draws)
+    print("boards")
+    print(boards)
+
+    winner_board, numbers = last_winner_with_draw_numbers(boards, number_draws)
+
+    print(winner_board)
+    print(numbers)
+
+    s = score(winner_board, numbers)
+    print(s)
+    return s
+
 def diff(first, second):
     second = set(second)
     return [item for item in first if item not in second]
@@ -68,23 +91,6 @@ def score(board, number_draws):
     return unmarked_sum * last_draw
 
 
-file = open("day4-input.txt", "r")
-lines = file.read().splitlines()
 
-number_draws = list(map(int, lines[0].split(",")))
-rest = lines[2:]
-board_strs = list(split_at(rest, lambda a: a == ""))
-boards = list(map(to_board, board_strs))
-
-print("numbers")
-print(number_draws)
-print("boards")
-print(boards)
-
-winner_board, numbers = last_winner_with_draw_numbers(boards, number_draws)
-
-print(winner_board)
-print(numbers)
-
-s = score(winner_board, numbers)
-print(s)
+if __name__ == "__main__":
+    print(run())

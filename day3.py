@@ -1,4 +1,7 @@
-def run():
+from typing import List
+
+
+def run() -> int:
     file = open("day3-input.txt", "r")
     binary_strs = file.read().splitlines()
     num_len = len(binary_strs[0])
@@ -18,7 +21,7 @@ def run():
     print(result)
     return result
 
-def mode(values):
+def mode(values) -> str:
     zero_count = 0
     one_count = 0
     for value in values:
@@ -32,12 +35,12 @@ def mode(values):
         return "1"
 
 
-def mode_at_index(index, collections):
+def mode_at_index(index: int, collections: List[str]) -> str:
     vals = map(lambda x: x[index], collections)
     return mode(vals)
 
 
-def inverse(binary_str):
+def inverse(binary_str: str) -> str:
     result = ""
     for c in binary_str:
         if c == "0":

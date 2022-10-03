@@ -3,7 +3,7 @@ from typing import Dict, Iterator, List, Tuple
 
 
 def window_depth_sums(depths: List[int]) -> List[int]:
-    windows: Iterator = windowed(depths, n=3)  # TODO: Add better typing
+    windows: Iterator = windowed(depths, n=3)  # TODO: typing
     return [sum(window) for window in windows]
 
 
