@@ -2,9 +2,13 @@ from typing import List
 
 
 def run() -> int:
+    depths = depths_from_file()
+    return num_increases(depths)
+
+
+def num_increases(depths):
     result = 0
     prev = None
-    depths = depths_from_file()
     for depth in depths:
         if prev is not None and depth > prev:
             result += 1
