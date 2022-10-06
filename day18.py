@@ -1,23 +1,3 @@
-"""
-in-order, pre-order and post-order traversal of binary tree
-
-              A
-             / \
-            B   C
-           / \   \
-          D   E   F
-         / \
-        G   H
-
-    in-order
-    G->D->H->B->E->A->F->C
-    pre-order
-    A->B->D->G->H->E->C->F
-    post-order
-    G->H->D->E->B->F->C->A
-"""
-
-
 from __future__ import annotations
 from typing import Optional
 from dataclasses import dataclass
@@ -25,7 +5,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
-    data: str
+    data: Optional[str]
     left: Optional[Node] = None
     right: Optional[Node] = None
 
@@ -41,16 +21,32 @@ class Tree:
             self.in_order(node.right)
 
 
-if __name__ == "__main__":
-    h = Node("H")
-    g = Node("G")
-    f = Node("F")
-    e = Node("E")
-    d = Node("D", g, h)
-    c = Node("C", f)
-    b = Node("B", d, e)
-    a = Node("A", b, c)
+def to_tree(pair_str: str) -> Node:
+    if pair_str[0] == "[":
+        comma_idx = comma_index(pair_str)
+        left = to_tree(pair_str[1:comma_idx])
+        right = to_tree(pair_str[comma_idx + 1 : -1])
+        return Node(None, left, right)
+    else:
+        return Node(int(pair_str))
 
-    tree = Tree(a)
+
+def comma_index(pair_str: str) -> int:
+    open_parans = 0
+    i = 1
+    while not (open_parans == 0 and pair_str[i] == ","):
+        if pair_str[i] == "[":
+            open_parans += 1
+        if pair_str[i] == "]":
+            open_parans -= 1
+        i += 1
+
+    return i
+
+
+if __name__ == "__main__":
+    s = "[1, 2]"
+    node = to_tree(s)
+    tree = Tree(node)
     print("\nin-order")
-    tree.in_order(a)
+    tree.in_order(node)
