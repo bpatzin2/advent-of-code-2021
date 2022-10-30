@@ -28,7 +28,7 @@ def to_tree(pair_str: str) -> Node:
         right = to_tree(pair_str[comma_idx + 1 : -1])
         return Node(None, left, right)
     else:
-        return Node(int(pair_str))
+        return Node(pair_str)
 
 
 def comma_index(pair_str: str) -> int:
