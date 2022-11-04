@@ -9,7 +9,7 @@ def run() -> int:
 
 
 def window_depth_sums(depths: List[int]) -> List[int]:
-    windows: Iterator = windowed(depths, n=3)
+    windows: Iterator[Tuple[int|None]] = windowed(depths, n=3)
     return [sum([d for d in window if d is not None]) for window in windows]
 
 
