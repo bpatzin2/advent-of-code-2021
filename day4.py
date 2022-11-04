@@ -40,7 +40,7 @@ def get_columns(board) -> List:  # TODO typing
     return result
 
 
-def is_winner(board, numbers) -> bool:
+def is_winner(board, numbers: List[int]) -> bool:
     number_set = set(numbers)
     for row in board:
         winner = is_winning_set(set(row), number_set)
@@ -60,7 +60,7 @@ def first_winner_with_draw_numbers(boards, number_draws):
         for board in boards:
             if is_winner(board, numbers):
                 return [board, numbers]
-    return None
+    raise Exception("no winner found")
 
 
 def score(board, number_draws) -> int:
