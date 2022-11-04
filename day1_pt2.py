@@ -9,8 +9,8 @@ def run() -> int:
 
 
 def window_depth_sums(depths: List[int]) -> List[int]:
-    windows: Iterator = windowed(depths, n=3)  # TODO: typing
-    return [sum(window) for window in windows]
+    windows: Iterator = windowed(depths, n=3)
+    return [sum([d for d in window if d is not None]) for window in windows]
 
 
 def num_increases(ints: List[int]) -> int:
