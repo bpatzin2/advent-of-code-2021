@@ -1,5 +1,5 @@
 from collections import Counter, defaultdict
-from typing import Dict
+from typing import Dict, List, Tuple
 
 test_data = """
 NNCB
@@ -22,8 +22,8 @@ CC -> N
 CN -> C""".strip()
 
 
-def parse_input(lines):
-    template = lines[0]
+def parse_input(lines: List[str]) -> Tuple[str, Dict[str, str]]:
+    template: str = lines[0]
 
     rules = {}
     for i in range(2, len(lines)):
@@ -58,14 +58,14 @@ def count_pairs(template):
 file = open("day14-input.txt", "r")
 lines = file.read().splitlines()
 template, rules = parse_input(lines)
-# template, rules = parse_input(test_data.split("\n"))
+
 num_steps = 40
 
 pair_counts = count_pairs(template)
 for n in range(num_steps):
     pair_counts = run_step(pair_counts, rules)
 
-letter_counts: Dict[int, int] = defaultdict(int)
+letter_counts: Dict[str, int] = defaultdict(int)
 for pair, count in pair_counts.items():
     letter = pair[0]
     letter_counts[letter] += count

@@ -76,7 +76,7 @@ def last_winner_with_draw_numbers(boards, number_draws):
             return [remaining_boards[0], numbers]
         else:
             remaining_boards = still_remaining_boards
-    return None
+    raise Exception("no winner found")
 
 
 def score(board, number_draws):
