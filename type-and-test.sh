@@ -1,1 +1,1 @@
-mypy . && python -m pytest tests/
+pyright && python -m pytest tests/
